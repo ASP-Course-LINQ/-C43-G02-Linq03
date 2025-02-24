@@ -1,4 +1,5 @@
 ﻿using static Demo.ListGenerator;
+using System.Text.RegularExpressions;
 namespace Demo
 {
     internal class Program
@@ -329,6 +330,7 @@ namespace Demo
             #endregion
 
             #region 05 - TakeWhile
+            //Once element not match predicate condition => stop checking. 
 
             #region 01 - TakeWhile<T>(Func<T,bool> predicate)
             ////Return Elements from a sequence as long as a specified condition is true
@@ -344,7 +346,7 @@ namespace Demo
 
             #endregion
 
-            #region 02 - TakeWhile<T>(Func<T,int,bool> predicate)
+            #region 02 - TakeWhile<T>(Func<T,int,bool> predicate) - Indexed TakeWhile()
             ////Return Elements from a sequence as long as a specified condition is true, the element's index is used in the logic of the predicate function
             ////once condition is false, stop and don't check rest of sequence elements.
             ////Return an IEnumerable<T> that contains the elements from the input sequence that occur 
@@ -361,6 +363,7 @@ namespace Demo
             #endregion
 
             #region 06 - SkipWhile
+            //Once element not match predicate condition => stop checking. 
 
             #region 01 - SkipWhile<T>(Func<T,bool> predicate)
             ////Bypasses/Skip elements in a sequence as long as a specified condition is true and then return the remaining elements
@@ -375,7 +378,7 @@ namespace Demo
 
             #endregion
 
-            #region 02 - SkipWhile<T>(Func<T,int,bool> predicate)
+            #region 02 - SkipWhile<T>(Func<T,int,bool> predicate) - indexed SkipWhile()
             ////Bypasses/Skip elements in a sequence as long as a specified condition is true and then return the remaining elements
             ////The Element's index is used in the logic of the predicate function
             ////Returns an sequence of type IEnumerable<T> that contains the elements from the input sequence starting at
@@ -386,6 +389,67 @@ namespace Demo
             //var result = numbers.SkipWhile((num,index) => num > index);
 
             //Console.WriteLine(string.Join(", ", result));// 1, 3, 9, 8, 6, 7, 2 
+
+            #endregion
+
+            #endregion
+
+            #endregion
+
+            #region Part 08 Let and Into [Valid Only With Query Expression/Syntax]
+
+            #region Into => Restart The Query With Introducing A New Range Variable.
+
+            #region Example01 - Return the specified sequence after removig vowel char from it's elements.
+
+            //List<string> names = ["Omar", "Ali", "Sally", "Mohamed", "Ahmed"];
+
+            //var result = from name in names
+            //             select Regex.Replace(name, "[AOUIEaouie]", "");//Replace any char from input sequence that match the pattern chars with empty string "".
+
+            //Console.WriteLine(string.Join(", ",result));// mr, l, Slly, Mhmd, hmd
+
+            #endregion
+
+            #region Example02 - Return the specified sequence after removig vowel char from it's elements - return only the names with lenght > 3 after remove vowel chars. 
+
+            //List<string> names = ["Omar", "Ali", "Sally", "Mohamed", "Ahmed"];
+
+            //var result = from name in names
+            //             select Regex.Replace(name, "[AOUIEaouie]", "")//Replace any char from input sequence that match the pattern chars with empty string "".
+            //             into NoVowelNames //Reset the query and start new query. "NoVowelNames" [Range Variable] => Represent every name in sequence.
+            //             where NoVowelNames.Length > 3
+            //             select NoVowelNames;
+
+            //Console.WriteLine(string.Join(", ", result));// Slly, Mhmd
+
+            #endregion
+
+            #endregion
+
+            #region Let => Continue The Query Without Restarting/Resetting The Query And Also Introduce new Range Variable 
+
+            #region Example01 - Return the specified sequence after removig vowel char from it's elements.
+
+            //List<string> names = ["Omar", "Ali", "Sally", "Mohamed", "Ahmed"];
+
+            //var result = from name in names
+            //             let NoVowelNames = Regex.Replace(name, "[AOUIEaouie]", "")//Replace any char from input sequence that match the pattern chars with empty string "".
+            //             select NoVowelNames;
+            //Console.WriteLine(string.Join(", ", result));// mr, l, Slly, Mhmd, hmd
+
+            #endregion
+
+            #region Example02 - Return the specified sequence after removig vowel char from it's elements - return only the names with lenght > 3 after remove vowel chars. 
+
+            //List<string> names = ["Omar", "Ali", "Sally", "Mohamed", "Ahmed"];
+
+            //var result = from name in names
+            //             let NoVowelNames = Regex.Replace(name, "[AOUIEaouie]", "")//Replace any char from input sequence that match the pattern chars with empty string "".
+            //             where NoVowelNames.Length > 3
+            //             select NoVowelNames;
+
+            //Console.WriteLine(string.Join(", ", result));// Slly, Mhmd
 
             #endregion
 
