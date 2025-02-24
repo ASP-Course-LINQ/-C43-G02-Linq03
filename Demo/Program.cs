@@ -247,6 +247,152 @@ namespace Demo
 
             #endregion
 
+            #region Part 07 Partitioning Operators - Deferred Execution [Take() - Skip() - TakeLast() - SkipLast() - TakeWhile() - SkipWhile()]
+
+            #region 01 - Take<T>(int count)
+            ////Returns a specified number of contiguous elements from the "start" of the sequence.
+            ////Returns sequence of type IEnumerable<T> that contains the specified number of elements from the "start" of the sequence.
+
+            //var result = ProductsList.Take(5);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //// ProductID:1,ProductName:Chai,Category:Beverages,UnitPrice:$18.00,UnitsInStock:100
+            //// ProductID:2,ProductName:Chang,Category:Beverages,UnitPrice:$19.00,UnitsInStock:17
+            //// ProductID:3,ProductName:Aniseed Syrup,Category:Condiments,UnitPrice:$10.00,UnitsInStock:13
+            //// ProductID:4,ProductName:Chef Anton's Cajun Seasoning,Category:Condiments,UnitPrice:$22.00,UnitsInStock:53
+            //// ProductID:5,ProductName:Chef Anton's Gumbo Mix,Category:Condiments,UnitPrice:$21.35,UnitsInStock:0
+
+            #endregion
+
+            #region 02 - TakeLast<T>(int count)
+            ////Returns a specified number of contiguous elements from the "Last" of the sequence.
+            ////Returns sequence of type IEnumerable<T> that contains the specified number of elements from the "Last" of the sequence.
+            ////Returns a new enumerable collection that contains the last count elements from source sequence.
+
+            //var result = ProductsList.TakeLast(5);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //// ProductID:73,ProductName:Röd Kaviar,Category:Seafood,UnitPrice:$15.00,UnitsInStock:101
+            //// ProductID:74,ProductName:Longlife Tofu,Category:Produce,UnitPrice:$10.00,UnitsInStock:4
+            //// ProductID:75,ProductName:Rhönbräu Klosterbier,Category:Beverages,UnitPrice:$7.75,UnitsInStock:125
+            //// ProductID:76,ProductName:Lakkalikööri,Category:Beverages,UnitPrice:$18.00,UnitsInStock:57
+            //// ProductID:77,ProductName:Original Frankfurter grüne Soße,Category:Condiments,UnitPrice:$13.00,UnitsInStock:32
+
+            #endregion
+
+            #region 03 - Skip<T>(int count)
+            ////Bypasses/Skip a specified number of elements in a sequence and then returns the remaining elements after skip.
+            ////Return an IEnumerable<T> that contains the elements that occur after the specified index in the input sequence
+            ////Skipping is done from the "start" of the source sequence.
+
+            //var result = ProductsList.Skip(5);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            #endregion
+
+            #region 04 - SkipLast<T>(int count)
+            ////Bypasses/Skip a specified number of elements in a sequence and then returns the remaining elements after skip.
+            ////Return an IEnumerable<T> that contains the elements that occur after the specified index in the input sequence
+            ////Skipping is done from the "End" of the source sequence.
+            ////Returns a new enumerable collection that contains the elements from source - count elements from the end of the collection
+
+            //var result = ProductsList.SkipLast(5);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            #endregion
+
+            #region Example(Pagination) - Get the second 10 elements in productList
+
+            //var result = ProductsList.Skip(10).Take(10);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            #endregion
+
+            #region 05 - TakeWhile
+
+            #region 01 - TakeWhile<T>(Func<T,bool> predicate)
+            ////Return Elements from a sequence as long as a specified condition is true
+            ////once condition is false, stop and don't check rest of sequence elements.
+            ////Return an IEnumerable<T> that contains the elements from the input sequence that occur 
+            ////before (stop) - before the element at which the test/condition is false on it.
+
+            //int[] numbers = [5, 4, 1, 3, 9, 8, 6, 7, 2];
+
+            //var result = numbers.TakeWhile(num => num > 1);
+
+            //Console.WriteLine(string.Join(", ", result));// 5, 4 
+
+            #endregion
+
+            #region 02 - TakeWhile<T>(Func<T,int,bool> predicate)
+            ////Return Elements from a sequence as long as a specified condition is true, the element's index is used in the logic of the predicate function
+            ////once condition is false, stop and don't check rest of sequence elements.
+            ////Return an IEnumerable<T> that contains the elements from the input sequence that occur 
+            ////before (stop) - before the element at which the test/condition is false on it.
+
+            //int[] numbers = [5, 4, 1, 3, 9, 8, 6, 7, 2];
+
+            //var result = numbers.TakeWhile((num, index) => num > index);//Take from the sequence the elements where it's value greater than it's index
+
+            //Console.WriteLine(string.Join(", ", result));// 5, 4 
+
+            #endregion
+
+            #endregion
+
+            #region 06 - SkipWhile
+
+            #region 01 - SkipWhile<T>(Func<T,bool> predicate)
+            ////Bypasses/Skip elements in a sequence as long as a specified condition is true and then return the remaining elements
+            ////Returns an sequence of type IEnumerable<T> that contains the elements from the input sequence starting at
+            ////the first element in the linear series that doesn't pass the predicate condition.
+
+            //int[] numbers = [5, 4, 1, 3, 9, 8, 6, 7, 2];
+
+            //var result = numbers.SkipWhile(num => num > 1);
+
+            //Console.WriteLine(string.Join(", ", result));// 1, 3, 9, 8, 6, 7, 2 
+
+            #endregion
+
+            #region 02 - SkipWhile<T>(Func<T,int,bool> predicate)
+            ////Bypasses/Skip elements in a sequence as long as a specified condition is true and then return the remaining elements
+            ////The Element's index is used in the logic of the predicate function
+            ////Returns an sequence of type IEnumerable<T> that contains the elements from the input sequence starting at
+            ////the first element in the linear series that doesn't pass the predicate condition.
+
+            //int[] numbers = [5, 4, 1, 3, 9, 8, 6, 7, 2];
+
+            //var result = numbers.SkipWhile((num,index) => num > index);
+
+            //Console.WriteLine(string.Join(", ", result));// 1, 3, 9, 8, 6, 7, 2 
+
+            #endregion
+
+            #endregion
+
+            #endregion
+
         }
     }
 }
