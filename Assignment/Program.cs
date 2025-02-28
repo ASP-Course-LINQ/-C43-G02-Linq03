@@ -13,11 +13,91 @@ namespace Assignment
 
             #region P01|Q01 - Get the first 3 orders from customers in Washington
 
+            #region 01 - FluentSyntax
+
+            //var result = CustomersList.Where(C => C.Region == "WA").Select(C => new
+            //{
+            //    C.CustomerName,
+            //    First3Orders = C.Orders.Take(3)
+            //});
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.CustomerName);
+            //    foreach (var orders in item.First3Orders)
+            //    {
+            //        Console.WriteLine(orders);
+            //    }
+            //} 
+
+            #endregion
+
+            #region 02 - QuerySyntax
+
+            //var result = from customer in CustomersList
+            //             where customer.Region == "WA"
+            //             select new
+            //             {
+            //                 customer.CustomerName,
+            //                 First3Orders = customer.Orders.Take(3)
+            //             };
+
+            //foreach (var customer in result)
+            //{
+            //    Console.WriteLine(customer.CustomerName);
+            //    foreach (var order in customer.First3Orders)
+            //    {
+            //        Console.WriteLine(order);
+            //    }
+            //}
+
+            #endregion
 
             #endregion
 
             #region P01|Q02 - Get all but the first 2 orders from customers in Washington.
 
+            #region 01 - FluentSyntax
+
+            //var result = CustomersList.Where(C => C.Region == "WA").Select(C => new
+            //{
+            //    C.CustomerName,
+            //    OrdersExceptFirst2 = C.Orders.Skip(2)
+            //});
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.CustomerName);
+            //    foreach (var orders in item.OrdersExceptFirst2)
+            //    {
+            //        Console.WriteLine(orders);
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            #endregion
+
+            #region 02 - QuerySyntax
+
+            //var result = from customer in CustomersList
+            //             where customer.Region == "WA"
+            //             select new
+            //             {
+            //                 customer.CustomerName,
+            //                 OrdersExceptFirst2 = customer.Orders.Skip(2)
+            //             };
+
+            //foreach (var customer in result)
+            //{
+            //    Console.WriteLine(customer.CustomerName);
+            //    foreach (var order in customer.OrdersExceptFirst2)
+            //    {
+            //        Console.WriteLine(order);
+            //    }
+            //    Console.WriteLine();
+            //}
+
+            #endregion
 
             #endregion
 
